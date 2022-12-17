@@ -102,11 +102,13 @@ def read_date_from_db():
         print('There was an error with db!')
         print(e)
 def keyboard():
-    markup = ReplyKeyboardMarkup(row_width=2)
+    markup = ReplyKeyboardMarkup(row_width=2, resize_keyboard=True)
 
     button1 = KeyboardButton('save name')
     button2 = KeyboardButton("save surname")
+    button3 = KeyboardButton("**smile**")
     markup.add(button1, button2)
+    markup.add(button3)
 
     return markup
 bot.infinity_polling()
