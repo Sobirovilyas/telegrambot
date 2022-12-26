@@ -62,7 +62,12 @@ def message_handler(message):
             for datum in data:
                 bot.reply_to(message, str(datum))
 
+    if message.text == "next":
+        bot.reply_to(message, " выберите пункт меню",reply_markup=next_keyboard())
 
+
+    if message.text == "Back":
+        bot.reply_to(message, "введите данные:", reply_markup=keyboard())
 def save_data_to_db(name, surname):
 #название нашего файла из база данных
 
@@ -106,10 +111,22 @@ def keyboard():
 
     button1 = KeyboardButton('save name')
     button2 = KeyboardButton("save surname")
-    button3 = KeyboardButton("**smile**")
+    button3 = KeyboardButton("next")
+
     markup.add(button1, button2)
     markup.add(button3)
 
+    return markup
+
+def next_keyboard():
+    markup: ReplyKeyboardMarkup = ReplyKeyboardMarkup(row_width=3, resize_keyboard=True)
+
+    button1 = KeyboardButton("Text1")
+    button2 = KeyboardButton("Text2")
+    button3 = KeyboardButton("Text3")
+    button4 = KeyboardButton("Back")
+    markup.add(button1,button2,button3)
+    markup.add(button4)
     return markup
 bot.infinity_polling()
 
